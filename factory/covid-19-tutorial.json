@@ -1,0 +1,15 @@
+{
+	"name": "covid-19-tutorial",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "85fd62ab-d308-432f-aee7-2b227c73cd3c",
+		"tenantId": "2f47fd46-a02a-4f90-ab0a-402d516332dc"
+	}
+}
