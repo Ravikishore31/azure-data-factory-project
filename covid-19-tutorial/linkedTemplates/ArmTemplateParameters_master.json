@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "covid-19-tutorial"
+		},
+		"ls_adls_azuredatafactoryproject_accountKey": {
+			"value": ""
+		},
+		"ls_blob_azuredatafactoryblob_connectionString": {
+			"value": ""
+		},
+		"sql_database_password": {
+			"value": ""
+		},
+		"ls_adls_azuredatafactoryproject_properties_typeProperties_url": {
+			"value": "https://azuredatafactoryproject.dfs.core.windows.net/"
+		},
+		"ls_https_ecdc_covid19_data_properties_typeProperties_url": {
+			"value": "@{linkedService().sourceBaseURL}"
+		},
+		"sql_database_properties_typeProperties_server": {
+			"value": "covid-srv-tutorial.database.windows.net"
+		},
+		"sql_database_properties_typeProperties_database": {
+			"value": "adf-tutorial"
+		},
+		"sql_database_properties_typeProperties_userName": {
+			"value": "ravi876"
+		},
+		"Event Trigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/20dfaac3-aad0-4110-abac-c8ec712c6e02/resourceGroups/azure-data-factory/providers/Microsoft.Storage/storageAccounts/azuredatafactoryblob"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

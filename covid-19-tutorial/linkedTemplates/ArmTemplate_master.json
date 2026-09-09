@@ -1,0 +1,125 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "covid-19-tutorial"
+		},
+		"ls_adls_azuredatafactoryproject_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_azuredatafactoryproject'"
+		},
+		"ls_blob_azuredatafactoryblob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_blob_azuredatafactoryblob'"
+		},
+		"sql_database_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'sql_database'"
+		},
+		"ls_adls_azuredatafactoryproject_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://azuredatafactoryproject.dfs.core.windows.net/"
+		},
+		"ls_https_ecdc_covid19_data_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{linkedService().sourceBaseURL}"
+		},
+		"sql_database_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "covid-srv-tutorial.database.windows.net"
+		},
+		"sql_database_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "adf-tutorial"
+		},
+		"sql_database_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "ravi876"
+		},
+		"Event Trigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/20dfaac3-aad0-4110-abac-c8ec712c6e02/resourceGroups/azure-data-factory/providers/Microsoft.Storage/storageAccounts/azuredatafactoryblob"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "covid-19-tutorial_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_adls_azuredatafactoryproject_accountKey": {
+						"value": "[parameters('ls_adls_azuredatafactoryproject_accountKey')]"
+					},
+					"ls_blob_azuredatafactoryblob_connectionString": {
+						"value": "[parameters('ls_blob_azuredatafactoryblob_connectionString')]"
+					},
+					"sql_database_password": {
+						"value": "[parameters('sql_database_password')]"
+					},
+					"ls_adls_azuredatafactoryproject_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_azuredatafactoryproject_properties_typeProperties_url')]"
+					},
+					"ls_https_ecdc_covid19_data_properties_typeProperties_url": {
+						"value": "[parameters('ls_https_ecdc_covid19_data_properties_typeProperties_url')]"
+					},
+					"sql_database_properties_typeProperties_server": {
+						"value": "[parameters('sql_database_properties_typeProperties_server')]"
+					},
+					"sql_database_properties_typeProperties_database": {
+						"value": "[parameters('sql_database_properties_typeProperties_database')]"
+					},
+					"sql_database_properties_typeProperties_userName": {
+						"value": "[parameters('sql_database_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "covid-19-tutorial_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Event Trigger_properties_typeProperties_scope": {
+						"value": "[parameters('Event Trigger_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'covid-19-tutorial_ArmTemplate_0')]"
+			]
+		}
+	]
+}
