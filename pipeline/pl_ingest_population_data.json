@@ -169,6 +169,9 @@
 			}
 		],
 		"concurrency": 1,
+		"folder": {
+			"name": "ingest"
+		},
 		"annotations": [],
 		"lastPublishTime": "2026-09-04T14:19:41Z"
 	},

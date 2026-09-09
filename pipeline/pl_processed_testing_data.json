@@ -1,5 +1,5 @@
 {
-	"name": "pl_ingest_testing_data",
+	"name": "pl_processed_testing_data",
 	"properties": {
 		"activities": [
 			{
@@ -30,6 +30,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "processed"
+		},
 		"annotations": [],
 		"lastPublishTime": "2026-09-07T11:45:49Z"
 	},

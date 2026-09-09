@@ -5,6 +5,9 @@
 			"referenceName": "ls_adls_azuredatafactoryproject",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "transformed"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
